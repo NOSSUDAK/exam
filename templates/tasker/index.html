@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>TODO list</h1>
+  <p>
+    <button type="button" class="btn btn-outline-primary"><a href="{% url 'tasker:task-create' %}">Add a task</a></button>
+  </p>
+  <p>Check your todo list below</p>
+  {% if task_list %}
+        <ul>
+        {% for task in task_list %}
+            <li>
+                <b>{{ task.content }}</b>
+                {% if task.is_done %}
+                   <i style="color: green">Done</i>
+                  {% else %}
+                   <i style="color: red">Not Done</i>
+                {% endif %}
+                <p style="display: inline">
+                  {% if task.is_done %}
+                    <button onclick="window.location.href='{% url 'tasker:toggle-status' pk=task.id %}'" type="button" class="btn btn-danger" >
+                      Undo
+                    </button>
+                  {% else %}
+                    <button onclick="window.location.href='{% url 'tasker:toggle-status' pk=task.id %}'" type="button" class="btn btn-success" >
+                      Complete
+                    </button>
+                  {% endif %}
+                </p>
+                <p>
+                  Created: {{ task.created_at|date:"SHORT_DATETIME_FORMAT" }};
+                  Deadline: {{ task.deadline|date:"D d M Y" }};
+                </p>
+            <p>Tags:
+              {% for tag in task.tags.all %}
+                {{ tag.name }}
+              {% endfor %}
+            </p>
+            <p style="display: inline">
+              <a href="{% url 'tasker:task-update'  pk=task.id %}">Update  </a>
+              <a href="{% url 'tasker:task-delete' pk=task.id %}">Delete</a>
+            </p>
+            </li>
+          <br>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no tasks</p>
+    {% endif %}
+{% endblock %}
