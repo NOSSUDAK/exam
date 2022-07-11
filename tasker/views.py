@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from exam1.forms import TaskForm
 from tasker.models import Task, Tag
 
 
@@ -23,13 +24,15 @@ class TaskListView(generic.ListView):
 
 class TaskUpdateView(generic.UpdateView):
     model = Task
-    fields = "__all__"
+    #fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("tasker:task-list")
 
 
 class TaskCreateView(generic.CreateView):
     model = Task
-    fields = "__all__"
+    #fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("tasker:task-list")
 
 

@@ -28,8 +28,10 @@
                   {% endif %}
                 </p>
                 <p>
-                  Created: {{ task.created_at|date:"SHORT_DATETIME_FORMAT" }};
-                  Deadline: {{ task.deadline|date:"D d M Y" }};
+                  Created: {{ task.created_at|date:"SHORT_DATETIME_FORMAT" }}
+                  {% if task.deadline %}
+                    Deadline: {{ task.deadline|date:"SHORT_DATETIME_FORMAT" }}
+                  {% endif %}
                 </p>
             <p>Tags:
               {% for tag in task.tags.all %}
