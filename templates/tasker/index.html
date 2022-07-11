@@ -3,7 +3,7 @@
 {% block content %}
   <h1>TODO list</h1>
   <p>
-    <button type="button" class="btn btn-outline-primary"><a href="{% url 'tasker:task-create' %}">Add a task</a></button>
+    <button style="float: right;" type="button" class="btn btn-outline-primary"><a href="{% url 'tasker:task-create' %}">Add a task</a></button>
   </p>
   <p>Check your todo list below</p>
   {% if task_list %}
