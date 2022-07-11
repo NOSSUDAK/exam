@@ -2,9 +2,7 @@
 
 {% block content %}
   <h1>Tag list</h1>
-  <p>
-    <button type="button" class="btn btn-outline-primary"><a href="{% url 'tasker:tag-create' %}">Add</a></button>
-  </p>
+    <button style="float: right;" type="button" class="btn btn-outline-primary"><a href="{% url 'tasker:tag-create' %}">Add</a></button>
     {% if tag_list %}
         <table class="table">
       <tr>
